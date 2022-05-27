@@ -1,5 +1,11 @@
 import React from "react";
-import { View, Text, StyleSheet, ActivityIndicator } from "react-native";
+import {
+  View,
+  Text,
+  StyleSheet,
+  ActivityIndicator,
+  Platform,
+} from "react-native";
 
 import { useFonts, Inter_900Black } from "@expo-google-fonts/inter";
 
@@ -25,5 +31,15 @@ export default function Header() {
 }
 
 const styles = StyleSheet.create({
-  contenedor: { fontFamily: "Inter_900Black", paddingTop: 50 },
+  contenedor: {
+    fontFamily: "Inter_900Black",
+    paddingTop: Platform.OS === "ios" ? 50 : 10,
+    backgroundColor: "#5E49E2",
+    paddingBottom: 10,
+    textAlign: "center",
+    textTransform: "uppercase",
+    fontSize: 20,
+    color: "#FFF",
+    marginBottom: 30,
+  },
 });

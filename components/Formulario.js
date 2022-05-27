@@ -1,5 +1,11 @@
 import React, { useState, useEffect } from "react";
-import { StyleSheet, Text, View, ActivityIndicator } from "react-native";
+import {
+  StyleSheet,
+  Text,
+  View,
+  ActivityIndicator,
+  TouchableHighlight,
+} from "react-native";
 import { useFonts, Inter_900Black } from "@expo-google-fonts/inter";
 import { Picker } from "@react-native-picker/picker";
 import axios from "axios";
@@ -22,6 +28,10 @@ export default function Formulario() {
 
   const obtenerMoneda = (moneda) => {
     console.log(moneda);
+  };
+
+  const cotizarPrecio = () => {
+    console.log("Cotizando...");
   };
 
   const obtenerCriptoMoneda = (cripto) => {
@@ -73,6 +83,13 @@ export default function Formulario() {
           />
         ))}
       </Picker>
+
+      <TouchableHighlight
+        style={styles.btnCotizar}
+        onPress={() => cotizarPrecio()}
+      >
+        <Text style={styles.textoCotizar}>Cotizar</Text>
+      </TouchableHighlight>
     </View>
   );
 }
@@ -83,5 +100,19 @@ const styles = StyleSheet.create({
     textTransform: "uppercase",
     fontSize: 22,
     marginVertical: 20,
+  },
+
+  btnCotizar: {
+    backgroundColor: "#5E49E2",
+    padding: 10,
+    marginTop: 20,
+  },
+
+  textoCotizar: {
+    color: "#FFF",
+    fontSize: 18,
+    fontFamily: "Inter_900Black",
+    textTransform: "uppercase",
+    textAlign: "center",
   },
 });

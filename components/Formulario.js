@@ -5,6 +5,7 @@ import {
   View,
   ActivityIndicator,
   TouchableHighlight,
+  Alert,
 } from "react-native";
 import { useFonts, Inter_900Black } from "@expo-google-fonts/inter";
 import { Picker } from "@react-native-picker/picker";
@@ -27,15 +28,25 @@ export default function Formulario() {
   }, []);
 
   const obtenerMoneda = (moneda) => {
-    console.log(moneda);
-  };
-
-  const cotizarPrecio = () => {
-    console.log("Cotizando...");
+    guardarMoneda(moneda);
   };
 
   const obtenerCriptoMoneda = (cripto) => {
     guardarCriptoMoneda(cripto);
+  };
+
+  const cotizarPrecio = () => {
+    if (moneda.trim() === "" || criptomoneda.trim() === "") {
+      mostrarAlerta();
+      return;
+    }
+
+    //Si pasa la validación//
+    console.log("Cotizando...");
+  };
+
+  const mostrarAlerta = () => {
+    Alert.alert("Error...", "Ambos campos son obligatorios", [{ text: "OK" }]);
   };
 
   let [fontsLoaded] = useFonts({

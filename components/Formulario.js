@@ -1,9 +1,15 @@
-import React from "react";
+import React, { useState } from "react";
 import { StyleSheet, Text, View, ActivityIndicator } from "react-native";
 import { useFonts, Inter_900Black } from "@expo-google-fonts/inter";
 import { Picker } from "@react-native-picker/picker";
 
 export default function Formulario() {
+  const [moneda, guardarMoneda] = useState("");
+  const [criptomoneda, guardarCriptoMoneda] = useState("");
+  const obtenerMoneda = (moneda) => {
+    guardarMoneda(moneda);
+  };
+
   let [fontsLoaded] = useFonts({
     Inter_900Black,
   });
@@ -21,7 +27,10 @@ export default function Formulario() {
     <View>
       <Text style={styles.label}>Moneda</Text>
 
-      <Picker>
+      <Picker
+        selectedValue={moneda}
+        onValueChange={(moneda) => obtenerMoneda(moneda)}
+      >
         <Picker.Item label="-Seleccione-" value="" />
         <Picker.Item label="Dolar EE.UU" value="USD" />
         <Picker.Item label="Peso Mexicano" value="MXN" />

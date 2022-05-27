@@ -1,14 +1,24 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { StyleSheet, Text, View, ActivityIndicator } from "react-native";
 import { useFonts, Inter_900Black } from "@expo-google-fonts/inter";
 import { Picker } from "@react-native-picker/picker";
+import axios from "axios";
 
 export default function Formulario() {
   const [moneda, guardarMoneda] = useState("");
   const [criptomoneda, guardarCriptoMoneda] = useState("");
-  const obtenerMoneda = (moneda) => {
-    guardarMoneda(moneda);
-  };
+  const [criptomonedas, guardarCriptoMonedas] = useState("");
+
+  useEffect(() => {
+    const consultarAPI = async () => {
+      const url =
+        "https://min-api.cryptocompare.com/data/top/mktcapfull?limit=10&tsym=USD";
+      const resultado = await axios.get(url);
+      guardarCriptoMonedas(resultado.data.Data);
+    };
+
+    consultarAPI();
+  }, []);
 
   let [fontsLoaded] = useFonts({
     Inter_900Black,

@@ -1,11 +1,29 @@
 import React from "react";
-import { StyleSheet, Text, Platform } from "react-native";
+import { View, Text, StyleSheet, ActivityIndicator } from "react-native";
 
-const Header = () => <Text style={styles.encabezado}>Criptomonedas</Text>;
+import { useFonts, Inter_900Black } from "@expo-google-fonts/inter";
+
+export default function Header() {
+  let [fontsLoaded] = useFonts({
+    Inter_900Black,
+  });
+
+  if (!fontsLoaded) {
+    return (
+      <ActivityIndicator
+        style={{ justifyContent: "center", alignItems: "center", flex: 1 }}
+        size={"large"}
+      />
+    );
+  }
+
+  return (
+    <View>
+      <Text style={styles.contenedor}>Criptomonedas</Text>
+    </View>
+  );
+}
 
 const styles = StyleSheet.create({
-  encabezado: {
-    paddingTop: Platform.OS === "ios" ? 50 : 10,
-  },
+  contenedor: { fontFamily: "Inter_900Black", paddingTop: 50 },
 });
-export default Header;

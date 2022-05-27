@@ -20,6 +20,14 @@ export default function Formulario() {
     consultarAPI();
   }, []);
 
+  const obtenerMoneda = (moneda) => {
+    console.log(moneda);
+  };
+
+  const obtenerCriptoMoneda = (cripto) => {
+    guardarCriptoMoneda(cripto);
+  };
+
   let [fontsLoaded] = useFonts({
     Inter_900Black,
   });
@@ -40,6 +48,7 @@ export default function Formulario() {
       <Picker
         selectedValue={moneda}
         onValueChange={(moneda) => obtenerMoneda(moneda)}
+        itemStyle={{ height: 120 }}
       >
         <Picker.Item label="-Seleccione-" value="" />
         <Picker.Item label="Dolar EE.UU" value="USD" />
@@ -49,6 +58,21 @@ export default function Formulario() {
       </Picker>
 
       <Text style={styles.label}>Criptomoneda</Text>
+
+      <Picker
+        selectedValue={criptomoneda}
+        onValueChange={(cripto) => obtenerCriptoMoneda(cripto)}
+        itemStyle={{ height: 120 }}
+      >
+        <Picker.Item label="-Seleccione-" value="" />
+        {criptomonedas.map((cripto) => (
+          <Picker.Item
+            key={cripto.CoinInfo.Id}
+            label={cripto.CoinInfo.FullName}
+            value={cripto.CoinInfo.Name}
+          />
+        ))}
+      </Picker>
     </View>
   );
 }

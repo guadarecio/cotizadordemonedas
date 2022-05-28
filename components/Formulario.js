@@ -11,10 +11,14 @@ import { useFonts, Inter_900Black } from "@expo-google-fonts/inter";
 import { Picker } from "@react-native-picker/picker";
 import axios from "axios";
 
-export default function Formulario() {
-  const [moneda, guardarMoneda] = useState("");
-  const [criptomoneda, guardarCriptoMoneda] = useState("");
-  const [criptomonedas, guardarCriptoMonedas] = useState("");
+export default function Formulario({
+  moneda,
+  criptomoneda,
+  guardarMoneda,
+  guardarCriptoMoneda,
+  guardarConsultarAPI,
+}) {
+  const [criptomonedas, guardarCriptoMonedas] = useState([]);
 
   useEffect(() => {
     const consultarAPI = async () => {
@@ -41,8 +45,8 @@ export default function Formulario() {
       return;
     }
 
-    //Si pasa la validación//
-    console.log("Cotizando...");
+    //Cambiar el state de consultar API//
+    guardarConsultarAPI(true);
   };
 
   const mostrarAlerta = () => {

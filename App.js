@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { StyleSheet, Text, View, Image } from "react-native";
+import { StyleSheet, Text, View, Image, ScrollView } from "react-native";
 import Header from "./components/Header";
 import Formulario from "./components/Formulario";
 import Cotizacion from "./components/Cotizacion";
@@ -29,23 +29,25 @@ const App = () => {
 
   return (
     <>
-      <Header />
-      <Image
-        style={styles.imagen}
-        source={require("./assets/img/cryptomonedas.png")}
-      />
-
-      <View style={styles.contenido}>
-        <Formulario
-          moneda={moneda}
-          criptomoneda={criptomoneda}
-          guardarMoneda={guardarMoneda}
-          guardarCriptoMoneda={guardarCriptoMoneda}
-          guardarConsultarAPI={guardarConsultarAPI}
+      <ScrollView>
+        <Header />
+        <Image
+          style={styles.imagen}
+          source={require("./assets/img/cryptomonedas.png")}
         />
 
+        <View style={styles.contenido}>
+          <Formulario
+            moneda={moneda}
+            criptomoneda={criptomoneda}
+            guardarMoneda={guardarMoneda}
+            guardarCriptoMoneda={guardarCriptoMoneda}
+            guardarConsultarAPI={guardarConsultarAPI}
+          />
+        </View>
+
         <Cotizacion resultado={resultado} />
-      </View>
+      </ScrollView>
     </>
   );
 };
